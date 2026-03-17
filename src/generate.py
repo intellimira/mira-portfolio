@@ -277,6 +277,12 @@ def generate_portfolio():
     """Main generator function."""
     print("🔄 Scanning projects...")
 
+    # Check if projects directory exists (required for generation)
+    if not PROJECTS_DIR.exists():
+        print(f"⚠️  Projects directory not found: {PROJECTS_DIR}")
+        print("📦 Using existing index.html instead")
+        return  # Exit gracefully, use existing HTML
+
     publish_flags = get_publish_flags()
     section_projects = {k: [] for k in SECTIONS}
 
